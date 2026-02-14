@@ -22,7 +22,6 @@ get_eod_data <- function(url_ext, time_stamp = NULL) {
   if (!is.null(time_stamp)) {
     query_url <- paste0(query_url, '&dateStamp=', as.character(time_stamp))
   }
-  print(query_url)
   response_val <- httr::GET(
     url = query_url, 
     httr::content_type("application/octet-stream")
@@ -48,9 +47,9 @@ download_stock_data <- function(exchange_vec, date_vec, buffer_time_constraint =
     stringsAsFactors = FALSE
   )
   lapply(seq_len(nrow(ex_grid)), \(r) {
-    print(paste(ex_grid$exchange[r], ex_grid$date[r]))
+    message(paste('getting:', ex_grid$exchange[r], ex_grid$date[r]))
     if (weekdays(as.Date(ex_grid$date[r])) %in% WEEKEND_DAYS) {
-      print('skipping weekend day...')
+      message('skipping weekend day...')
       return(data.frame())
     }
     url_ext <- paste0('Quote/List/', ex_grid$exchange[r])

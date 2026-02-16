@@ -77,7 +77,7 @@ save_out_stock_data <- function(stock_dat) {
     } else {
       dir.create(path = ex_out_dir, recursive = TRUE)
       data.table::fwrite(
-        x = stock_dat,
+        x = ex_dat,
         file = file.path(ex_out_dir, OUTPUT_FILE_NAME)
       )
     }

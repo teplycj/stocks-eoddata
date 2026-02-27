@@ -1,3 +1,6 @@
+
+# for querying eod data base ----------------------------------------------
+
 build_httr_data <- function(httr_content) {
   lapply(httr_content, as.data.frame) |>
     data.table::rbindlist(use.names = TRUE, fill = TRUE)
